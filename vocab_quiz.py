@@ -66,6 +66,7 @@ def askReplay():
         return False
     else:
         print("Please type 'yes' or 'no'.")
+        
 # beginning of main program
 
 playerName = input("Enter your name:")
@@ -73,6 +74,6 @@ showWelcome(playerName)
 
 while True:
     runQuiz(playerName)
-    if askReplay() == false:
+    if askReplay() == False:
         print("\n Thanks for playing, ", playerName, "! keep studying your Japanese! 🎌")
         break
