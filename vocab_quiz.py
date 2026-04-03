@@ -29,8 +29,22 @@ def runQuiz(playerName):
 
     for japaneseWord, correctAnswer in wordBank.items():
         totalQuestions += 1
+
+        # hint for the first letter of the answer
+        hint = "First letter: " + correctAnswer[:1]
+
         print("\nQuestion", totalQuestions, "of", len(wordBank))
         print("What does '", japaneseWord, "'mean in English?")
+
+        while True: 
+            hintAnswer = input("\nWould you like a hint? \ntype 'y' for yes, 'n' for no: ")
+            if hintAnswer == "y":
+                print("\nHint! the first letter is: ", hint)
+                break
+            elif hintAnswer == "n":
+                break
+            else:
+                print("Please type 'y' or 'n'")
 
         playerAnswer = input("Your answer: ")
 
@@ -59,14 +73,15 @@ def showScore(playerName, score, totalQuestions):
     print("==========================")
 
 def askReplay():
-    replayAnswer = input("\nWould you like to play again? (yes/no): ")
-    if replayAnswer.lower() == "yes":
-        return True
-    elif replayAnswer.lower() == "no":
-        return False
-    else:
-        print("Please type 'yes' or 'no'.")
-        
+    while True:
+        replayAnswer = input("\nWould you like to play again? (yes/no): ")
+        if replayAnswer.lower() == "yes":
+            return True
+        elif replayAnswer.lower() == "no":
+            return False
+        else:
+            print("Please type 'yes' or 'no'.")
+
 # beginning of main program
 
 playerName = input("Enter your name:")
