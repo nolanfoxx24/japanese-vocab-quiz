@@ -75,6 +75,8 @@ def showScore(playerName, score, totalQuestions):
 
     print("==========================")
 
+    saveScore(playerName, score, totalQuestions)
+
 def askReplay():
     while True:
         replayAnswer = input("\nWould you like to play again? (yes/no): ")
@@ -85,10 +87,37 @@ def askReplay():
         else:
             print("Please type 'yes' or 'no'.")
 
+def saveScore(playerName, score, totalQuestions):
+    percentage = round((score / totalQuestions) * 100, 1)
+
+    with open ("scores.txt", "a") as file:
+        file.write(playerName + " - " + str(score) + "/" + str(totalQuestions) + " - " + str(percentage) + "%\n")
+
+    print("Score saved!")
+
+def showHighScores():
+    print("\n==========================")
+    print("       High Scores")
+    print("==========================")
+
+    try:
+        with open("scores.txt", "r") as file:
+            contents = file.read()
+            if contents == "":
+                print("No Scores yet!")
+            else:
+                print(contents)
+
+    except FileNotFoundError:
+        print("No scores yet!")
+
+    print("==========================")
+
 # beginning of main program
 
 playerName = input("Enter your name:")
 showWelcome(playerName)
+showHighScores()
 
 while True:
     runQuiz(playerName)
