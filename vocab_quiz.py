@@ -1,3 +1,4 @@
+import random
 
 score = 0
 totalQuestions = 0
@@ -26,8 +27,10 @@ print("\n There are", len(wordBank), " words in today's quiz.")
 def runQuiz(playerName):
     score = 0
     totalQuestions = 0
+    wordList = list(wordBank.items())
+    random.shuffle(wordList)
 
-    for japaneseWord, correctAnswer in wordBank.items():
+    for japaneseWord, correctAnswer in wordList:
         totalQuestions += 1
 
         # hint for the first letter of the answer
